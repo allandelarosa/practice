@@ -1,0 +1,17 @@
+Algorithm explanation:
+- use two pointer, i and j
+    - i starts at 0, j is one after i
+- in a loop, check if s[j] is seen already
+- if seen, increment i until s[i] == s[j] (until i points to the duplicate character)
+    - while incrementing i, also remove any characters not equal to s[j] frrom seen set
+    - after finding duplicate, make i point to one after the duplicate
+- with each iteration, update mximum substring length with j - i + 1
+- increment j
+
+Edge cases with implementation:
+- s.length == 0: return 0
+- s.length == 1: return 1
+
+Complexity analysis:
+- Time: O(n), j will go over each character in s; i could visit each character as well
+- Space: O(n), since the characters are not limited in any way, we could potentially store every character in s; other than that, two pointers and a return value or stored
