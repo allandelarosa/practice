@@ -1,0 +1,10 @@
+Algorithm explanation:
+- iterate through given list of prereqs
+    - increment indegree of of course that has a prereq
+    - add course that has prereq to adjacency list of the prereq
+- perform a topological sort, starting with courses with indegree = 0 and decrementing indegrees of courses when its prereq is found
+- if there are still nodes left with indegree > 0, it is impossible to finish all the course; otherwise, it is possible
+
+Complexity analysis:
+- Time: O(V + E), when performing topological sort, each course is visited and then all its neighbors have their indegrees updated
+- Space: O(V + E), the indegree of each course is stored (O(V)) and the courses that it is a prereq for are also stored (O(E))

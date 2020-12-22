@@ -22,7 +22,6 @@ class Solution(object):
         # after popping from queue, decrement indegrees of prereqs 
         # add prereq to queue if indegree goes to 0
         while q:
-            print(q)
             course = q.popleft()
             for prereq in prereqs[course]:
                 indegrees[prereq] -= 1
