@@ -1,0 +1,10 @@
+Algorithm explanation:
+- recursively call a helper function that performs a "post-order" traversal on the tree, ie, call function on left and right nodes
+- if null node reached, return 0 (base case)
+- otherwise, update max sum to the (current nodes value) + (maximum sum that can be made from the left) + (maximum sum that san be made frrom the right) if greater
+    - can use 0 instead of the values frrom left and right if they are negative
+- return current node value plus the max of left sum, right sum, and 0
+
+Complexity analysis:
+- Time: O(n), every node must be visited
+- Space: O(log(n)) if considering stack memory used for recursive calls / if performed iteratively and an explicit stack is used; otherwise, O(1) since only the maximum sum is kept track of
