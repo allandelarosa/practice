@@ -1,0 +1,8 @@
+Algorithm explanation:
+- iterate over every point in the grid
+- the the point value is '1' and it has not been seen yet, increase island count by 1 and perform a bfs here
+- bfs will check all connected 1's (finding the netire island) and mark them as seen
+
+Complexity analysis:
+- Time: O(V + E), since a check is performed for each node, and each of a node's neighbors are processed before putting them into the queue; for this particular problem, each node can have up to 4 edges, so the complexity reduces to O(V + 4V), or O(V)
+- Space: O(V), since we are using a set to keep track of what nodes are visited; the queue to store nodes to be processed can take (in the worst case) O(sqrt(V)) (specifically, it would be m + n - 1 for m = len(grid) and n = len(grid[0])), but this is less than O(V)
