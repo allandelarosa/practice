@@ -10,17 +10,27 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
+            
+        max_len = 0
         
-        def helper(root, max_len):
-            if not root:
-                return 0
+        stack = []
+        curr = root
+        
+        while stack or curr:
+            while curr:
+                curr_len = 0
+                stack.append((curr, 0, False))
+                curr = curr.left
             
-            left = helper(root.left, max_len)
-            right = helper(root.right, max_len)
-            
-            max_len[0] = max(max_len[0], left + right)
-            return max(left,right) + 1
-            
-        max_len = [0]
-        helper(root, max_len)
-        return max_len[0]
+            curr, left, ready = stack.pop()
+            if ready:
+                right = curr_len
+                max_len = max(max_len, left + right)
+                curr_len = 1 + max(left, right)
+                curr = None
+            else:
+                stack.append((curr, curr_len, True))
+                curr_len = 0
+                curr = curr.right
+                
+        return max_len
