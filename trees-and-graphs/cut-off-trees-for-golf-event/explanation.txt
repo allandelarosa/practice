@@ -11,4 +11,7 @@ Edge cases:
 
 Complexity analysis:
 - Time: O((V + E) * V), since it is possible to keep going over the same path over and over again to get ot the next largest tree; ie, we repeat a bfs (O(V + E)) for V nodes
-- Space: O(sqrt(V)), in the worst case, all the nodes on the border of the square forest are put in the queue, and that number of nodes scales with O(sqrt(V)); this queue is reset with each bfs, so the space consumed from one bfs is freed once it completes
+- Space: O(V), since a set is used to keep track of all nodees that have been visited
+
+space for the queue, not overall space:
+- O(sqrt(V)), in the worst case, all the nodes on the border of the square forest are put in the queue, and that number of nodes scales with O(sqrt(V)); this queue is reset with each bfs, so the space consumed from one bfs is freed once it completes
