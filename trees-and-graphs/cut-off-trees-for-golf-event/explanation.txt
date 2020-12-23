@@ -1,0 +1,14 @@
+Algorithm explanation:
+- count all trees in the forest (find values > 1)
+- sort list of trees
+- perform bfs starting at (0, 0) and search for smallest tree
+    - if bfs does not find the tree, it is impossible to reach so return -1
+    - otherwise, return the depth of the search (represents steps to reach that tree) and the coordinate that the tree was found
+    - update steps and repeat bfs, starting at coordinate of last found tree and searching for next largest tree
+
+Edge cases:
+- if no trees found at start, return 0
+
+Complexity analysis:
+- Time: O((V + E) * V), since it is possible to keep going over the same path over and over again to get ot the next largest tree; ie, we repeat a bfs (O(V + E)) for V nodes
+- Space: O(sqrt(V)), in the worst case, all the nodes on the border of the square forest are put in the queue, and that number of nodes scales with O(sqrt(V)); this queue is reset with each bfs, so the space consumed from one bfs is freed once it completes
