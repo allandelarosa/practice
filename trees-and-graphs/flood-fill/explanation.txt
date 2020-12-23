@@ -1,0 +1,10 @@
+Algorithm explanation:
+- perform bfs on source point to find all points that are the same color and then update them
+- no need to use a set to keep track of visited nodees; just check if color is correct
+
+Note on bfs vs. dfs:
+- since the goal is to visit every single node, performing dfs can result in every single node being put on to a stack; bfs has better memory usage in this case, since nodes are processed more quickly and removed from the queue, so the queue will not have as much redundant information
+
+Complexity analysis:
+- Time: O(V + E): each time a "node" is visited, its color gets updated and then all adjacent nodees are processed
+- Space: O(sqrt(V))? space for the image is not considered since it is provided by the function caller; the only additional space is used by the queue, which in the worst case can contain all nodees on the border of the image (scales with square root of nodes in image)
