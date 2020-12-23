@@ -1,0 +1,12 @@
+Algorithm explanation:
+- recursively call helper function
+    - base case: null node, return null, false, false
+    - recursively call on left and right subtrees
+        - if both either return a node rather than null, that is the lowest common ancestor, so return it
+    - if p was found in left subtree and q was found in right subtree, return this node as lowest common ancestor (and vice versa)
+    - check if p or q was found, and this node is q or p, also return this node
+    - otherwise, return null to continue search and whether or not p or q was found
+
+Complexity analysis:
+- Time: O(n), in the worst case, one node is the left-most leaf and the other is the right-most leaf, so every node must be visited
+- Space: O(log(n)), if considering stack space / explicit stack for iterative solution
