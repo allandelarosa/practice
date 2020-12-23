@@ -1,0 +1,10 @@
+Algorithm explanation:
+- recursively call helper function
+    - base case: if null, return 0
+    - update max path length if path from left + path frrom right is longer
+    - return 1 + max of path from left and path from right
+- return max path length after helper function visits all nodes in the tree
+
+Complexity analysis:
+- Time: O(n), since we have to visit every node
+- Space: O(log(n)) if considering stack space due to recursion / if using an explicit stack; otherwise O(1), since only the max path length is kept track of
