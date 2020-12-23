@@ -14,30 +14,34 @@ class Solution(object):
         :rtype: TreeNode
         """
         
-        def helper(root, p, q):
-            if not root:
-                return None, False, False
-            
-            left = helper(root.left, p, q)
-            if left[0]:
-                return left
-            
-            right = helper(root.right, p, q)
-            if right[0]:
-                return right
-            
-            if (left[1] and right[2]) or (left[2] and right[1]):
-                return root, True, True
-            
-            p_found = left[1] or right[1] or root == p
-            q_found = left[2] or right[2] or root == q
-            
-            if p_found and q_found:
-                return root, True, True
-            
-            return None, p_found, q_found
+        stack = []
+        curr = root
         
-        return helper(root, p, q)[0]
-            
-            
+        p_found = q_found = False
+        
+        while stack or curr:
+            while curr:
+                p_found = q_found = False
+                stack.append((curr, p_found, q_found, False))
+                curr = curr.left
                 
+            curr, p_temp, q_temp, popped = stack.pop()
+            
+            p_found = p_temp or p_found
+            q_found = q_temp or q_found
+
+            if p_found and q_found:
+                return curr
+            
+            if popped:
+                p_found = p_found or curr == p
+                q_found = q_found or curr == q
+                
+                if p_found and q_found:
+                    return curr
+                
+                curr = None
+                
+            else:
+                stack.append((curr, p_found, q_found, True))
+                curr = curr.right
