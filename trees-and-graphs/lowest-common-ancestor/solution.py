@@ -14,34 +14,21 @@ class Solution(object):
         :rtype: TreeNode
         """
         
-        stack = []
-        curr = root
+        if not root:
+            return root
         
-        p_found = q_found = False
+        if root == p or root == q:
+            return root
         
-        while stack or curr:
-            while curr:
-                p_found = q_found = False
-                stack.append((curr, p_found, q_found, False))
-                curr = curr.left
-                
-            curr, p_temp, q_temp, popped = stack.pop()
-            
-            p_found = p_temp or p_found
-            q_found = q_temp or q_found
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        
+        if left and right:
+            return root
+        
+        if left:
+            return left
+        if right:
+            return right
 
-            if p_found and q_found:
-                return curr
-            
-            if popped:
-                p_found = p_found or curr == p
-                q_found = q_found or curr == q
-                
-                if p_found and q_found:
-                    return curr
-                
-                curr = None
-                
-            else:
-                stack.append((curr, p_found, q_found, True))
-                curr = curr.right
+        return None
