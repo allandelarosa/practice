@@ -1,0 +1,20 @@
+Algorithm explanation:
+- sort the array
+- start with a pointer at the beginning of the array
+- perform two sum algorithm for element to the right of that pointer
+    - one pointer at start, the other at the end
+    - if sum < 0, increment start pointer
+    - if sum > 0, decrement end pointer
+    - if sum == 0,
+        - update triplets
+        - increment start pointer until value does not match previous
+- increment pointer until value does not match previous and repeat; if value at this pointer is ever greater than 0, break from loop
+
+
+Edge cases:
+- length of input < 3: return empty list
+
+
+Complexity analysis:
+- Time: O(n^2), it takes O(n) time to perform the two sum algorithm, and it is called n times
+- Space: O(n) or o(log(n)), depending on the space taken by the sorting algorithm; space for the output is disregarded
