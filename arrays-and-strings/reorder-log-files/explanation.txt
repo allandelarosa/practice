@@ -1,0 +1,11 @@
+Algorithm explanation:
+- iterate over logs
+    - if second element of log is a digit, add it to the digit logs
+    - otherwise, add it to the letter logs
+- sort letter logs using custom comparison method
+    - compare content of logs to check for lexicographic order
+    - if there is a tie, sort based on identifier
+
+Complexity analysis:
+- Time: O(m*nlog(n)), since we have to potentially sort n logs, and each log can have m elements
+- Space: O(m*n), since some sorting algorithms for use as much additional space for intermediate values as the original array (this is dependent on the sorting algorithm)
