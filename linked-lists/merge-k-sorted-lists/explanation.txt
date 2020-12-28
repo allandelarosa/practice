@@ -1,0 +1,12 @@
+Algorithm explanation:
+- standard merge algorithm for two lists 
+- merge lists one by one into the bigger merged list: 
+    - start with empty list and merge first list into it 
+    - merge second list into new merged list 
+    - merge third list into merged second and first list 
+    - etc
+
+
+Complexity analysis:
+- Time: O(n*m), where n is the length of the longest list and m is the number of the lists given; in the worst case, the first list is the longest and all of its elements are revisited each time another list is merged
+- Space: O(n), the merge algorithm creates a new reference to the nodes in the lists being merged
