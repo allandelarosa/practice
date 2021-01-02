@@ -1,0 +1,20 @@
+Algorithm explanation:
+- generate graph 
+    - for each word in word list, generate all possible 'matchers' for it (one letter changed to a wildcard, all other letters the same)
+    - using the matcher as a key in a dictionary, keep a list of all word that the matcher applies to
+    ^ store indices in word list rather than word to save space 
+- perform bfs
+    - keep track of search depth so that it can be returned when end word is found
+    - figure out next word to check by generate matchers for the current word
+
+
+Complexity analysis:
+- Time: O(m^2 * n), where m is the length of each word and n is the number of words in the list:
+    - for generate the graph, there are m possible matchers, and it takes m time to generate each matcher; this is done for each of the n words 
+    - for the traversal, in the worst case, all n words are considered; for each word visited, there are m matchers to consider, and it takes m time to generate those matchers
+- Space: O(m^2 * n); there are n words each each word can have m matchers of length m
+
+
+Notes:
+- can be optimized further with bi-directional search 
+- this solution is optimal assuming the length of words is small compared to the number of words given; if there are a small amount of words but the length of those words is very long, a solution with O(n^2 * m) would perform better
