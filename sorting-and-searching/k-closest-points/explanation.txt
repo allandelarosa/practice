@@ -1,3 +1,21 @@
+QUICKSELECT SOLUTION
+
+Algorithm explanation:
+- randomly choose the distance of one of the points as a pivot value
+- perform a quick select:
+    - put all points with distance less than the pivot to the right, and all those with distacne greater than or equal to the left
+    - if the right half has more than K elements, quick select again on the right half 
+    - if the right half has less than K elements, quick select again on the left half 
+
+
+Complexity analysis:
+- Time: O(n) on average, since a good pivot will significantly reduce the amount to be sorted; O(n^2) in the worst case when selecting the pivots does not significantly decrease the amount to be sorted
+- Space: O(1), only pointers in the array and a pivot value are stored
+
+######################################################
+
+MAX HEAP SOLUTION
+
 Algorithm explanation:
 - iterate over each point in points
 - calculate the distance of that point from the origin
