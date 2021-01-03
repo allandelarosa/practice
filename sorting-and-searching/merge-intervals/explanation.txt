@@ -1,0 +1,18 @@
+Algorithm explanation:
+- the list of intervals is initially sorted in ascending order by their first element
+    - if there is a tie, the second element is considered
+- starting from the interval with the greatest first element and moving backwards:
+    - while the interval at the top of the stack has a second element less than or equal to the current interval's second element, pop from the stack (throw that interval away)
+    - while the interval at the top of the stack has a first element less than or equal to the current interval's second element, pop from the stack and replace the current interval's second element with that of the interval on the stack 
+    - push the current interval onto the stack if no further changes need to be made
+    - the first element of the interval does not need to be considered, since it is guarantted to be less than or equal to the interval on the stack due to the initial sort
+- return the stack; if the intervals must be returned in ascending order, return the stack reversed
+
+
+Complexity analysis:
+(n is the number of intervals given)
+- Time: O(n*log(n))
+    - given list of intervals is initally sorted, taking n*log(n) time 
+    - while intervals are compared to each other, each interval is considered at most twice, taking 2n time 
+    - overall complexity is O(n*log(n)) + O(2n) = O(n*log(n))
+- Space: O(n), in the worst case, no intervals overlap and the new list of intervals is the same size as the original

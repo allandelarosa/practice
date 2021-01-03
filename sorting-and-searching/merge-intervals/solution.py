@@ -13,12 +13,14 @@ class Solution(object):
         while intervals:
             curr = intervals.pop()
             
-            while stack and curr[1] >= stack[-1][1]:
-                stack.pop()
-
-            while stack and curr[1] >= stack[-1][0]:
-                curr = [curr[0], stack.pop()[1]]
+            while stack:
+                if curr[1] >= stack[-1][1]:
+                    stack.pop()
+                elif curr[1] >= stack[-1][0]:
+                    curr = [curr[0], stack.pop()[1]]
+                else:
+                    break
             
             stack.append(curr)
         
-        return stack
+        return stack[::-1]
