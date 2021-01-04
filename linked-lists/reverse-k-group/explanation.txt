@@ -1,0 +1,17 @@
+Algorithm explanation:
+- starting from the head, count forward k nodes 
+- if k nodes are found:
+    - reverse that section of the list:
+        - set current node to the first of these k nodes
+        - store the next node of the current node in a temp variable
+        - from a dummy node, set the next node of the current node to be the next node of the dummy 
+        - set the next node of the dummy to be the current node 
+        - set the current node to the temp variable and repeat this process k times
+    - after the list is reversed, update the pointer for the dummy to be the end of this list 
+- ifk  nodes are not found, just append the remainder of the list to he current list
+
+
+Complexity analysis:
+(n is the number of nodes in the original list)
+- Time: O(n), since every node is visited at most twice; once when counting k nodes, and another time when reversing the k group
+- Space: O(1), since no new nodes are created, the next nodees are just moved around
