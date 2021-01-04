@@ -1,0 +1,12 @@
+Algorithm explanation:
+- start with two pointers, one at the first height and one at the last height 
+- while the two pointers are different and have not passed each other:
+    - update max area to the area between the current two heights (smaller of the two heights * width between both pointers)
+    - whichever pointer points to the smaller height, move that one towards the middle; if there is a tie, move either
+        - move the smaller one, since the larger could potentially contribute to a larger area, while the smaller one already contributed to the largest area it could create
+
+
+Complexity Analysis:
+(n is the size of the given array)
+- Time: O(n), a single pass is performed
+- Space: O(1), only two pointers and a max area varialbe are stored
