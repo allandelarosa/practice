@@ -1,0 +1,14 @@
+Algorithm explanation:
+- binary search, but:
+    - if target is less than the element in the middle:
+        - if also less than first element AND the middle element if larger than the first element, search second half of array (array was potentially rotated such that the second half contains lesser elements)
+        - otherwise, search the first half as per usual
+    - else if target is greater:
+        - if also greater than last element AND middle element is less than last element, search first half of array (array was potentially rotated such that the first half contains greater elements)
+        - otherwise, search the second half as per usual
+
+
+Complexity analysis:
+(n is the length of the given array)
+- Time: O(log(n)), same complexity as binary search; changing which half of the array is considered does not affect the complexity
+- Space: O(1), no additional data structures are allocated, only pointers to the ends of the array to be considered are kept
