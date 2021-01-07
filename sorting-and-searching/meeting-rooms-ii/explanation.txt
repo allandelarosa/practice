@@ -1,0 +1,13 @@
+Algorithm explanation:
+- create a sorted list of starting times, and a separate sorted list of ending times 
+    - matching the start and end times does not matter; all that matters is whether or not a previous meeting ended so that the room can be reused
+- start with two pointers at the beginning of each array
+    - if the current start time is greater than or equal to the current end time, update the end time
+    - otherwise, add another room 
+    - always update the start time 
+
+
+Complexity analysis:
+(n is the number of meeting times given)
+- Time: O(n*log(n)), to sort the start and end time arrays
+- Space: O(n), since the start and end time arrays are both length n
