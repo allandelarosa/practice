@@ -1,0 +1,8 @@
+Algorithm explanation:
+For each of the potential centers of a palindrome, check if the letters at either side of the center are the same. Continue outwards until there are no pairs left to check (pointers go out of bounds of string) or if the letters are ever not equal
+
+
+Complexity analysis:
+(n is the length of the given string)
+- Time: O(n^2), for each of the 2n - 1 potential centers for a palindrome, two pointers are expanded outwards from those centers, visiting up to n / 2 letters
+- Space: O(1), no additional data structures are allotcated, only pointers in the string are kept track of
