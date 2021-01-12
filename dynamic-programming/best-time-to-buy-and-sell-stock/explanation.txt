@@ -1,0 +1,11 @@
+Algorithm explanation:
+- initialize min price to a large value
+- iterate over array of prices, keeping track of min price
+    - if a new min is found, update the min price
+    - else, update max profit if current price - current min is larger
+
+
+Complexity analysis:
+(n is the length of given prices array)
+- Time: O(n), performed in one pass
+- Space: O(1), no additional data structures allocated, only minimum price and maximum price are stored
