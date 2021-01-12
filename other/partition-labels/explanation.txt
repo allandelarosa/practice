@@ -1,0 +1,14 @@
+Algorithm explanation:
+(This algorithm was inspired by the solution to the "Merge Intervals" problem)
+- iterate over the letters in the string in order:
+    - if the letter was not seen before, say the interval it can be found is [this index, this index]
+    - else, say the interval is [prev first index, this index]
+    - while this interval overlaps with an interval before it, merge those intervals into this one
+    - if the interval no longer overlaps or there are no more intervals to compare to, append this intervals to the list of intervals
+- return the length of the intervals that have not been combined
+
+
+Complexity analysis:
+(n is the length of the input)
+- Time: O(n), each letter is visited once (O(n)), and for each interval created because of those letters, each will be visited twice when trying to merge, except the last one (also O(n))
+- Space: O(1), since the input is constrained to have lowercase characters, there are a max of 26 characters to keep intervals for; if instead the input is not constrained this way and unicode characters are allowed, the worst case would be O(n) when every character is unique
