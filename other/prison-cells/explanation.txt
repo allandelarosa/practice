@@ -1,0 +1,14 @@
+Algorithm explanation:
+- the cells for the next day are determined as the problem deescribes
+- the cells at each step are stored as well as the step at which that configuration occurs
+- if the number of steps is equal to N, return the current configuration
+- if the configuration was seen before, use this to determine the configuration to return:
+    - subtract current count from N 
+    - take the remainder of the N divided by (the total number of configurations seen - the step at which the current configuration occured at); this fastforwards through the number of cycles that would have occured 
+    - return the configuration that occurs at the resulting step within that cycle
+
+
+Complexity analysis:
+(k is the size of the input; in our case, k = 8)
+- Time: O(k * min(N, 2^k)), it takes O(k) time to find the next cell; this is performed either O(N) times or O(2^k) times if no repeats are found and all possible combinations are considered (unlikely for large inputs)
+- Space: O(k * 2^k), in the worst case all possible combinations of size k are stored (unlikely for large inputs)
