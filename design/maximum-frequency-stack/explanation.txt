@@ -1,0 +1,14 @@
+Explanation:
+- keep a stack of stacks:
+    - each stack in the stack of stacks represents how many elements appear as frequently as its position in the stack of stacks (ex: the first stack in the stack of stacks is a stack of elements that appears 1 time, the second is a stack of elements that appears 2 times, etc)
+- keep track of the number of times an element appears in a dictionary
+- if the number of times an element appears ever exceeds the length of the stack of stacks, add a new stack to it which will now contain the most frequent elements
+- if the most frequent stack is empty, remove it and the next most frequent stack is now the most frequent stack
+
+
+Complexity analysis:
+(n is the number of elements that will be added to the stack)
+- Time:
+    - push: O(1), since we are only ever pushing to the end of a stack, and determing which stack to push to can also be done in constant time
+    - pop: O(1), since we are only ever popping from the end of the latest stack
+- Space: O(n), similar to an ordinary stack, but the elements are spread among different stacks rather than just being in one stack
