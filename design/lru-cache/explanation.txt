@@ -1,16 +1,21 @@
 Explanation:
-- a queue is used to keep trackof the order that keys were accessed
+- keep a doubly-ended linked list in order to move around elements easily
+- keep a dictionary to get node references in constant time
 
 get:
-    - simply check dictionary if key is present; if not, return -1, otherwise, update timestamp
+    - check dictionary for key:
+        - if it is not used, return -1
+        - otherwise, move corresponding node to the end of the linked list and return its value
 
 put:
-    - if capacity is exceeded, pop from queue until the timestamp matches the timestamp stored in the dictionary to find the least recently used, then delete that entry from the dictionary 
-    - update value and timestamp 
+    - if key is used, move corresponding node to end of list and update value; otherwise, create a new node and add it to the end of the list 
+    - if the length of the list has exceeded the capacity, remove the very first node and also remove the entry from the dictionary 
+    - update list length accordingly
 
 
 Complexity analysis:
+(c is the capacity)
 - Time: 
-    - O(1) for get, since we just check the dictionary and update timestamp
-    - amortized O(1) for put, requires popping from queue as many times as get was called, and each call to get was O(1)
-- Space: in addition to the O(n) space required to store key value pairs, the queue in the worst case requires as much space as get was called, which could be infinite; because the number of calls to the function was not expected to exceed 3 * 10^4, this was decided to be acceptable
+    - O(1) for get, since checking dictionary and moving node to end of list can be done in constant time
+    - O(1) for put, since adding a node, moving a node to the end of the list, and removing the first node can all be done in constant time
+- Space: O(c), since the can be up to c elements in the dictionary and up to 2+c nodees in the linked list (additional 2 to store sentinnel head and tail nodes)

@@ -1,32 +1,70 @@
 class LRUCache(object):
-    def __init__(self, capacity):
-        self.cap = capacity
-        self.cache = {}
-        self.order = deque()
-        self.timestamp = 0
-        self.last_checked = 0
+    class Node(object):
+        def __init__(self, val=0, key=0, prev=None, next=None):
+            self.val = val
+            self.key = key
+            self.prev = prev
+            self.next = next
         
+        
+    def _move_to_end(self, key):
+        self.cache[key].prev.next = self.cache[key].next
+        self.cache[key].next.prev = self.cache[key].prev
+        
+        self.cache[key].prev = self.tail.prev
+        self.cache[key].next = self.tail
+        
+        self.tail.prev.next = self.cache[key]
+        self.tail.prev = self.cache[key]
+        
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.cap = capacity
+        self.len = 0
+        self.cache = {}
+        self.head = self.Node()
+        self.tail = self.Node(prev=self.head)
+        self.head.next = self.tail
 
+        
     def get(self, key):
+        """
+        :type key: int
+        :rtype: int
+        """
         if key not in self.cache:
             return -1
         
-        self.cache[key][1] = self.timestamp
-        self.timestamp += 1
-        self.order.append(key)
+        self._move_to_end(key)
         
-        return self.cache[key][0]
-        
+        return self.cache[key].val
 
     def put(self, key, value):
-        if key not in self.cache and len(self.cache) == self.cap:
-            lru = self.order.popleft()
-            while lru not in self.cache or self.cache[lru][1] != self.last_checked:
-                self.last_checked += 1
-                lru = self.order.popleft()
-            del self.cache[lru]
-            self.last_checked += 1
+        """
+        :type key: int
+        :type value: int
+        :rtype: None
+        """
+        if key in self.cache:
+            self._move_to_end(key)
+            self.cache[key].val = value
+        else:
+            self.cache[key] = self.Node(value, key, self.tail.prev, self.tail)
+            self.tail.prev.next = self.cache[key]
+            self.tail.prev = self.cache[key]
+            self.len += 1
             
-        self.cache[key] = [value, self.timestamp]
-        self.timestamp += 1
-        self.order.append(key)
+        if self.len > self.cap:
+            to_remove = self.head.next
+            self.head.next = self.head.next.next
+            self.head.next.prev = self.head
+            del self.cache[to_remove.key]
+            self.len -= 1
+
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
