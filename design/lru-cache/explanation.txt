@@ -1,0 +1,16 @@
+Explanation:
+- a queue is used to keep trackof the order that keys were accessed
+
+get:
+    - simply check dictionary if key is present; if not, return -1, otherwise, update timestamp
+
+put:
+    - if capacity is exceeded, pop from queue until the timestamp matches the timestamp stored in the dictionary to find the least recently used, then delete that entry from the dictionary 
+    - update value and timestamp 
+
+
+Complexity analysis:
+- Time: 
+    - O(1) for get, since we just check the dictionary and update timestamp
+    - amortized O(1) for put, requires popping from queue as many times as get was called, and each call to get was O(1)
+- Space: in addition to the O(n) space required to store key value pairs, the queue in the worst case requires as much space as get was called, which could be infinite; because the number of calls to the function was not expected to exceed 3 * 10^4, this was decided to be acceptable
