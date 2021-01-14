@@ -1,0 +1,13 @@
+Explanation:
+- serialize:
+    - perform a level order traversal and store the result as a string, with values separated by commas
+    - null nodees are only kep track of if their immediate parent is not null 
+- deserialize:
+    - construct tree from level order traversal starting with root
+    - add nodes to a queue when created; simply ignore any entries in the data that represent null nodes
+
+
+Complexity analysis:
+(n is the number of nodes in the tree)
+- Time: O(n), since every node must be visited
+- Space: O(n), since the string will be as long as the number of nodes in the tree, with some additional null nodes (the number of which cannot exceed the the number of nodes in the tree)
