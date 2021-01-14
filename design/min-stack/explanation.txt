@@ -1,0 +1,11 @@
+Explanation:
+- implementation basically the same as an ordinary stack, but also push the current minimum along with a value onto the stack
+
+
+Notes:
+- I decided to add an additonal dummy value at the beginning onto the stack, simply so that determining a minimum with an empty stack does not require additional code
+
+
+Complexity analysis:
+- Time: O(1) for all methods, since the current minimum is always available at the top of the stack, and all other stack operations are O(1)
+- Space: O(n), same as an ordinary stack, but O(n) curent minimum values are also stored
