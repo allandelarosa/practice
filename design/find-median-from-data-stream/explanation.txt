@@ -1,0 +1,17 @@
+Explanation:
+- two heaps are maintained that each contains half of the values from the data stream; a max heap the contains the smaller half of the values and a min heap that contains the larger half
+    - the smaller values are in a max heap and the larger values in a min heap so that the two middle most values can be accessed in constant time
+- addNum:
+    - to ensure each heap has half the values, every additional value is pushed onto the max heap of smaller values; then the top of that max heap is pushed onto the min heap of larger values 
+    - if the size of the max heap is smaller, push the top of the min heap onto the max heap (the max heap is arbitrarily selected to have the additional value when the number of elements is odd)
+- findMedian:
+    - if the size of the two heaps is equal (even number of values from the stream), return the average of the top of both heaps 
+    - otherwise, return the top of the max heap, since it will be the one to have the extra element
+
+
+Complexity analysis:
+(n is the number of elements from the stream)
+- Time:
+    - addNum: O(log(n)), each heap operation takes O(log(n)) time
+    - findMedian: O(1), taking values from the top of each heap can be done in constant time
+- Space: O(n), since each of the two heaps takes half of all the values
